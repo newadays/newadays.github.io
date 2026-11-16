@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gbenga Awodokun · Product Portfolio</title>
+<meta name="description" content="Gbenga Awodokun builds and ships AI products: agent evaluation, ML experimentation platforms and data infrastructure at Roku, YouTube and Google Cloud, plus two clinical AI products of his own.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: one 1080px column. The page is organised like a trace: a root run (the hero),
+   then child spans (case studies), each with inputs, steps and an evaluation row. */
+:root {
+  --bg: #f5f7fb;
+  --surface: #ffffff;
+  --ink: #111a2e;
+  --muted: #56617a;
+  --line: #d9dfeb;
+  --accent: #2545d3;
+  --accent-soft: #e6ebfc;
+  --signal: #9a5b00;
+  --signal-soft: #fbf0d9;
+  --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0c111c;
+    --surface: #141b2b;
+    --ink: #e9edf7;
+    --muted: #9aa6bf;
+    --line: #27314a;
+    --accent: #93a8ff;
+    --accent-soft: #1c2748;
+    --signal: #f0be6a;
+    --signal-soft: #33290f;
+    color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.6;
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+.wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; line-height: 1.1; }
+p { margin: 0; }
+.mono { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.02em; }
+.label {
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Top bar */
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px 24px;
+  padding-block: 22px;
+  border-bottom: 1px solid var(--line);
+}
+.top .name { font-family: var(--display); font-weight: 700; font-size: 1.05rem; }
+.top nav { display: flex; flex-wrap: wrap; gap: 6px 22px; }
+.top nav a { color: var(--muted); text-decoration: none; font-size: 0.92rem; }
+.top nav a:hover { color: var(--accent); }
+
+/* Hero */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 48px;
+  align-items: center;
+  padding-block: 64px 72px;
+}
+.hero h1 { font-size: clamp(2.3rem, 5.2vw, 3.7rem); font-weight: 700; letter-spacing: -0.02em; }
+.hero h1 em { font-style: normal; color: var(--accent); }
+.hero .lede { margin-top: 22px; font-size: 1.13rem; color: var(--muted); max-width: 34em; }
+.hero .where { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 8px 20px; }
+
+.trace {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  min-width: 0;
+}
+.trace-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+}
+.trace ol { list-style: none; margin: 0; padding: 8px 0; }
+.trace li {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr);
+  gap: 12px;
+  align-items: baseline;
+  padding: 9px 16px;
+}
+.trace li + li { border-top: 1px dashed var(--line); }
+.trace li.child { padding-left: 34px; }
+.tag {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-align: center;
+  padding: 2px 0;
+  border-radius: 4px;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+.tag.build { background: var(--signal-soft); color: var(--signal); }
+.trace .who { font-weight: 600; font-size: 0.96rem; }
+.trace .what { display: block; color: var(--muted); font-size: 0.86rem; line-height: 1.4; }
+
+/* Sections */
+section { padding-block: 64px; border-top: 1px solid var(--line); }
+.sec-head { display: grid; gap: 10px; margin-bottom: 36px; max-width: 40em; }
+.sec-head h2 { font-size: clamp(1.7rem, 3.4vw, 2.3rem); font-weight: 700; letter-spacing: -0.015em; }
+.sec-head p { color: var(--muted); }
+
+/* Fit table */
+.fit { display: grid; gap: 0; border-top: 1px solid var(--line); }
+.fit-row {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.6fr);
+  gap: 12px 40px;
+  padding-block: 20px;
+  border-bottom: 1px solid var(--line);
+}
+.fit-row h3 { font-size: 1.12rem; font-weight: 700; line-height: 1.3; }
+.fit-row p { max-width: 38em; }
+
+/* Case studies */
+.cases { display: grid; gap: 28px; }
+.case {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.case-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 6px 16px;
+  padding: 11px 24px;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+}
+.case-body {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.5fr);
+  gap: 28px 44px;
+  padding: 28px 24px 30px;
+}
+.case h3 { font-size: 1.6rem; font-weight: 700; letter-spacing: -0.01em; }
+.case .role { margin-top: 10px; color: var(--muted); font-size: 0.96rem; }
+.case .link { margin-top: 14px; font-size: 0.92rem; display: flex; flex-wrap: wrap; gap: 4px 16px; }
+.steps { display: grid; gap: 18px; margin: 0; min-width: 0; }
+.steps div { display: grid; gap: 4px; }
+.steps dt { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.steps .eval dt { color: var(--signal); }
+.steps dd { margin: 0; max-width: 40em; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 0; margin: 0; list-style: none; }
+.chips li {
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  padding: 3px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+}
+
+/* Background */
+.cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px 40px; }
+.cols h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 12px; }
+.cols ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; color: var(--muted); font-size: 0.96rem; }
+
+/* Contact */
+.contact { display: grid; gap: 18px; }
+.contact h2 { font-size: clamp(1.7rem, 3.4vw, 2.3rem); font-weight: 700; }
+.contact p { color: var(--muted); max-width: 36em; }
+.contact .links { display: flex; flex-wrap: wrap; gap: 10px 26px; font-weight: 500; }
+footer { padding-block: 26px 40px; border-top: 1px solid var(--line); color: var(--muted); }
+
+@media (max-width: 820px) {
+  body { font-size: 16px; }
+  .hero { grid-template-columns: minmax(0, 1fr); gap: 36px; padding-block: 44px 52px; }
+  .fit-row, .case-body { grid-template-columns: minmax(0, 1fr); }
+  .cols { grid-template-columns: minmax(0, 1fr); }
+  section { padding-block: 48px; }
+  .case-bar { padding-inline: 18px; }
+  .case-body { padding: 22px 18px 24px; }
+}
+</style>
+</head>
+<body>
+
+<header class="wrap top">
+  <span class="name">Gbenga Awodokun</span>
+  <nav aria-label="Sections">
+    <a href="#fit">Fit</a>
+    <a href="#work">Work</a>
+    <a href="#background">Background</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+  <div class="wrap hero">
+    <div>
+      <p class="label">AI product manager · Austin, Texas</p>
+      <h1 style="margin-top:16px">I ship AI systems, then build the <em>evals</em> that tell me whether they work.</h1>
+      <p class="lede">Senior Product Manager at Roku for ML recommendations and experimentation. Before that, data platform at YouTube and sales engineering at Google Cloud. On my own time I build two clinical AI products, where I write the prompts, the judges and the specs myself.</p>
+      <p class="where"><a href="#work">See the work</a><a href="https://github.com/newadays">GitHub</a><a href="https://www.linkedin.com/in/gbengawodokun/">LinkedIn</a></p>
+    </div>
+
+    <aside class="trace" aria-label="Career at a glance">
+      <div class="trace-head mono"><span>trace · career</span><span>6 spans</span></div>
+      <ol>
+        <li><span class="tag">platform</span><span><span class="who">Roku</span><span class="what">Senior PM, ML Recommendations &amp; Experimentation</span></span></li>
+        <li><span class="tag">platform</span><span><span class="who">YouTube</span><span class="what">PM, Data Platform</span></span></li>
+        <li><span class="tag">field</span><span><span class="who">Google Cloud</span><span class="what">Sales Engineering Team Lead</span></span></li>
+        <li><span class="tag build">build</span><span><span class="who">NewCare</span><span class="what">Co-founder. AI scribe and prescription routing for Nigerian clinicians</span></span></li>
+        <li><span class="tag build">build</span><span><span class="who">HelioDX</span><span class="what">Solo founder. Agent-drafted imaging findings, reviewed by clinicians</span></span></li>
+        <li><span class="tag build">oss</span><span><span class="who">Open source</span><span class="what">A LangGraph scribe agent and a PM agent with its own evals</span></span></li>
+      </ol>
+    </aside>
+  </div>
+
+  <section id="fit">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="label">Product Manager, LangSmith</p>
+        <h2>How my work lines up with the role</h2>
+        <p>LangSmith is where teams trace, evaluate and deploy agents. I have been on the customer side of that problem and on the platform side of it.</p>
+      </div>
+      <div class="fit">
+        <div class="fit-row">
+          <h3>Evaluation systems that scale</h3>
+          <p>I built an LLM-as-a-judge eval for a clinical scribe and iterated the prompt through versions against named failure modes: fabricated findings, deferred exams, transcription flags. HelioDX publishes every eval task and score at <a href="https://evals.heliodx.com/">evals.heliodx.com</a>, and my <a href="https://github.com/newadays/Apache-Superset-PM-Agent">Superset PM agent</a> ships with a citation-faithfulness eval that can gate CI. At Roku I work on experimentation and LLM evals for a recommendations platform.</p>
+        </div>
+        <div class="fit-row">
+          <h3>Debugging multi-step agents</h3>
+          <p>HelioDX runs a coordinator model over a team of agents on every scan. NewCare's scribe is a pipeline of speech-to-text, extraction, retrieval and note generation. I have traced failures through both. My open <a href="https://github.com/newadays/scribe-health-ai-agent">LangGraph scribe agent</a> is traced in LangSmith and runs in LangGraph Studio.</p>
+        </div>
+        <div class="fit-row">
+          <h3>Deeply technical</h3>
+          <p>I self-host models with vLLM on Cloud Run, design the API contracts between backend and mobile, and write specs that coding agents implement. Earlier I was a software engineer at GE and SLB, and a PM for petabyte-scale ML infrastructure at YouTube.</p>
+        </div>
+        <div class="fit-row">
+          <h3>Close to customers</h3>
+          <p>I led a Google Cloud sales engineering team and spent years in technical conversations with enterprise buyers. At NewCare I onboard physicians directly and watch them use the product on real consults.</p>
+        </div>
+        <div class="fit-row">
+          <h3>Ships, learns, iterates</h3>
+          <p>NewCare's mobile alpha is in physicians' hands and updates ship over the air. HelioDX went from idea to a <a href="https://app.heliodx.com/">live prototype</a> with published evals in ten days, for a hackathon deadline.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="label">Selected work</p>
+        <h2>Five runs, traced end to end</h2>
+        <p>Each one lists the problem, what I did, and how the result was evaluated.</p>
+      </div>
+
+      <div class="cases">
+
+        <article class="case">
+          <div class="case-bar mono"><span>run · newcare/scribe</span><span>co-founder · product + build</span></div>
+          <div class="case-body">
+            <div>
+              <h3>An AI scribe I could measure</h3>
+              <p class="role">NewCare is a clinical documentation and prescription-routing platform for Nigerian clinicians. The Scribe turns a recorded consult into a SOAP note.</p>
+              <p class="link"><a href="https://newcare.app">newcare.app</a><a href="https://apps.apple.com/us/app/newcare-ai-for-clinicians/id6757157686">iOS app on the App Store</a></p>
+            </div>
+            <dl class="steps">
+              <div><dt>Problem</dt><dd>A scribe that invents a finding is worse than no scribe. Early prompt versions fabricated details, mishandled exams the doctor deferred, and missed transcription flags. Consults also switch between English and Yoruba, Igbo, Hausa or Pidgin mid-sentence.</dd></div>
+              <div><dt>What I built</dt><dd>Note generation on a self-hosted MedGemma 4B served through vLLM on a private Cloud Run service. I am moving it to a retrieval design that matches diagnoses against an ICD-10 index and pulls medications from a drug catalog, with specs written as a shared contract plus backend and mobile documents for coding agents to implement.</dd></div>
+              <div class="eval"><dt>Evaluation</dt><dd>An LLM-as-a-judge eval scores every note. I track scores per prompt version in Langfuse and iterate against each failure mode by name. A small group of physicians has used the mobile alpha on real consults since late August 2026 to build benchmarks.</dd></div>
+              <div><dt>Stack</dt><dd><ul class="chips"><li>MedGemma 4B</li><li>vLLM</li><li>Cloud Run</li><li>Firebase</li><li>Algolia</li><li>Langfuse</li><li>Expo / React Native</li><li>Maestro E2E</li></ul></dd></div>
+            </dl>
+          </div>
+        </article>
+
+        <article class="case">
+          <div class="case-bar mono"><span>run · heliodx/findings</span><span>solo founder · product + build</span></div>
+          <div class="case-body">
+            <div>
+              <h3>A team of agents reading chest X-rays</h3>
+              <p class="role">HelioDX drafts imaging findings for clinics that have no radiologist. The first use is tuberculosis screening. The clinician reviews every draft and makes the diagnosis.</p>
+              <p class="link"><a href="https://github.com/newadays/heliodx">Source on GitHub</a><a href="https://app.heliodx.com/">Live app</a><a href="https://evals.heliodx.com/">Eval results</a><a href="https://www.youtube.com/watch?v=gaQmFrep_O8">Demo video</a><a href="https://heliodx.com">heliodx.com</a></p>
+            </div>
+            <dl class="steps">
+              <div><dt>Problem</dt><dd>Many clinics in Nigeria take chest X-rays that no radiologist ever reads. A draft has to be useful to a general clinician and must never present itself as a diagnosis.</dd></div>
+              <div><dt>What I built</dt><dd>Meta Muse Wonder coordinates a team of Muse Glimmer agents that take a film from intake to a signed report. Meta SAM 3.1 segments every scan first, so each finding points at the region it rests on. Glimmer and SAM run on a private Cloud Run GPU through vLLM, so images and reports stay inside the project, and every agent step is recorded in an auditable trace. A guard in code, not only in the prompt, rejects any model answer that names a disease. Built solo for the Meta Global AI Developer Hackathon and <a href="https://github.com/newadays/heliodx">open source under AGPL-3.0</a>.</dd></div>
+              <div class="eval"><dt>Evaluation</dt><dd>160 code-graded tasks on public chest X-rays (NIH ChestX-ray14 and the Shenzhen TB screening set), run head to head against MedGemma 27B on the same GPU with the same masks. HelioDX was about twice as fast at about half the cost per task. Every task and score is <a href="https://evals.heliodx.com/">published</a>, including the weaknesses: neither system flagged a normal film, and both missed most TB-labelled films. It has not been validated in a clinic, and the product is positioned accordingly. The method is in the <a href="https://github.com/newadays/heliodx/blob/develop/eval/README.md">eval README</a>.</dd></div>
+              <div><dt>Stack</dt><dd><ul class="chips"><li>Muse Wonder</li><li>Muse Glimmer</li><li>Meta SAM 3.1</li><li>vLLM</li><li>Cloud Run GPU</li><li>Firebase</li><li>React + Vite</li><li>Human-in-the-loop review</li></ul></dd></div>
+            </dl>
+          </div>
+        </article>
+
+        <article class="case">
+          <div class="case-bar mono"><span>run · open-source/agents</span><span>author · public repos</span></div>
+          <div class="case-body">
+            <div>
+              <h3>Agents and evals, in the open</h3>
+              <p class="role">Two public repos: a LangGraph medical scribe built as a runnable tutorial, and a PM agent that mines apache/superset and audits its own report.</p>
+              <p class="link"><a href="https://github.com/newadays/scribe-health-ai-agent">scribe-health-ai-agent</a><a href="https://github.com/newadays/Apache-Superset-PM-Agent">Apache-Superset-PM-Agent</a><a href="https://medium.com/@gbenga-awodokun/building-clinical-ai-agents-with-langchain-and-jev-decision-healthcare-trustworthy-ai-lab-v2-1b81e271f1c9">Write-up on Medium</a></p>
+            </div>
+            <dl class="steps">
+              <div><dt>LangGraph scribe</dt><dd>A triage node routes each transcript to a pediatrics or general medicine agent, which writes a SOAP note with tools. A confidence gate sends doubtful input to human review instead of guessing. Both graphs are registered for LangGraph Studio and every run is traced in LangSmith.</dd></div>
+              <div><dt>Superset PM agent</dt><dd>Pulls releases, issues and discussions from apache/superset, scores them with a transparent heuristic, and has Claude write a prioritized PM report. Each run emits an OpenInference span tree.</dd></div>
+              <div class="eval"><dt>Evaluation</dt><dd>The scribe repo benchmarks LLM-as-a-judge triage against a decision model on six transcripts, five runs each. Routing accuracy tied at 87%, but the LLM reported 0.90 confidence on a case it got wrong, so its confidence could not drive the gate. The PM agent has a citation-faithfulness eval that exits non-zero on any fabricated issue reference, and a scoring eval that checks the heuristic against an LLM judge by rank correlation.</dd></div>
+              <div><dt>Stack</dt><dd><ul class="chips"><li>LangGraph</li><li>LangSmith</li><li>LangGraph Studio</li><li>OpenInference</li><li>Arize</li><li>Claude</li><li>Python</li></ul></dd></div>
+            </dl>
+          </div>
+        </article>
+
+        <article class="case">
+          <div class="case-bar mono"><span>run · roku/experimentation</span><span>senior product manager</span></div>
+          <div class="case-body">
+            <div>
+              <h3>Experimentation for ML recommendations</h3>
+              <p class="role">Product lead on the ML platform, experimentation and LLM evaluation behind recommendations, on a service with roughly 100 million monthly active users.</p>
+            </div>
+            <dl class="steps">
+              <div><dt>Problem</dt><dd>Model teams can only move as fast as they can run trustworthy experiments. Behavioral metrics also miss what viewers think, so some questions need to be asked directly.</dd></div>
+              <div><dt>What I did</dt><dd>Own the roadmap across experimentation, the ML platform, agentic AI and LLM evals. Led on-device surveys shown as an overlay on the TV and tied to A/B experiments, working through privacy, legal and compliance review to launch.</dd></div>
+              <div class="eval"><dt>Evaluation</dt><dd>Surveys attach stated viewer feedback to experiment arms, so a team reads behavior and sentiment for the same treatment.</dd></div>
+              <div><dt>Stack</dt><dd><ul class="chips"><li>A/B experimentation</li><li>Causal inference</li><li>LLM evals</li><li>ML platform</li></ul></dd></div>
+            </dl>
+          </div>
+        </article>
+
+        <article class="case">
+          <div class="case-bar mono"><span>run · google/data-platform</span><span>product manager · team lead</span></div>
+          <div class="case-body">
+            <div>
+              <h3>Data infrastructure, then the customers who buy it</h3>
+              <p class="role">PM on YouTube's Data Platform, then Sales Engineering Team Lead at Google Cloud.</p>
+            </div>
+            <dl class="steps">
+              <div><dt>YouTube</dt><dd>Product manager for petabyte-scale ML and data infrastructure, working with a team of more than 30, on a product with about two billion monthly users. My users were internal engineers and data scientists, which is the closest thing to building developer tools inside a large company.</dd></div>
+              <div><dt>Google Cloud</dt><dd>Led a sales engineering team. I ran technical discovery, architecture reviews and proofs of concept with enterprise customers, and brought what they struggled with back to product teams.</dd></div>
+              <div class="eval"><dt>Recognition</dt><dd>Stratosphere Award recipient at Google Cloud.</dd></div>
+              <div><dt>Stack</dt><dd><ul class="chips"><li>BigQuery ML</li><li>Kubeflow</li><li>Data pipelines</li><li>Solution architecture</li></ul></dd></div>
+            </dl>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="background">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="label">Background</p>
+        <h2>Tools, credentials and earlier chapters</h2>
+      </div>
+      <div class="cols">
+        <div>
+          <h3>I work hands-on with</h3>
+          <ul>
+            <li>LangSmith, Langfuse, MLflow</li>
+            <li>vLLM, SGLang, MCP</li>
+            <li>Kubeflow, BigQuery ML</li>
+            <li>Experimentation and causal inference</li>
+            <li>Google Cloud, Firebase, Cloud Run</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Credentials</h3>
+          <ul>
+            <li>Google Cloud Professional Cloud Architect</li>
+            <li>Google Cloud Professional Data Engineer</li>
+            <li>PMP</li>
+            <li>UC Berkeley Haas, Product Management Certificate</li>
+            <li>MIT Sloan, Entrepreneurship Certificate</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Earlier</h3>
+          <ul>
+            <li>Founder, Cashaam / CreateKap (Techstars-backed)</li>
+            <li>Software engineer at GE and SLB</li>
+            <li>Open source: <a href="https://github.com/newadays/Apache-Superset-PM-Agent">a PM agent for Apache Superset</a></li>
+            <li>Writing: <a href="https://medium.com/@gbenga-awodokun">medium.com/@gbenga-awodokun</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap contact">
+      <p class="label">Contact</p>
+      <h2>I'd like to talk about LangSmith.</h2>
+      <p>The fastest way to reach me is LinkedIn. I am happy to walk through any of this work live, including the eval prompts and the failures.</p>
+      <p class="links">
+        <a href="https://www.linkedin.com/in/gbengawodokun/">linkedin.com/in/gbengawodokun</a>
+        <a href="https://github.com/newadays">github.com/newadays</a>
+        <a href="https://newcare.app">newcare.app</a>
+        <a href="https://heliodx.com">heliodx.com</a>
+      </p>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap mono">Gbenga Awodokun · Austin, Texas</footer>
+
+</body>
+</html>
