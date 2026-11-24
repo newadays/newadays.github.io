@@ -95,6 +95,21 @@ p { margin: 0; }
 .hero h1 em { font-style: normal; color: var(--accent); }
 .hero .lede { margin-top: 22px; font-size: 1.13rem; color: var(--muted); max-width: 34em; }
 .hero .where { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 8px 20px; }
+.logos { margin: 30px 0 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.logos li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 52px;
+  padding: 0 16px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.logos img { display: block; height: 22px; width: auto; }
+.logos .yt { height: 25px; }
+.logos .goog { height: 50px; margin-inline: -8px; }
+.logos .ge { height: 34px; }
 
 .trace {
   background: var(--surface);
@@ -236,6 +251,12 @@ footer { padding-block: 26px 40px; border-top: 1px solid var(--line); color: var
       <h1 style="margin-top:16px">I ship AI systems, then build the <em>evals</em> that tell me whether they work.</h1>
       <p class="lede">Senior Product Manager at Roku for ML recommendations and experimentation. Before that, data platform at YouTube and sales engineering at Google Cloud. On my own time I build two AI products, where I write the prompts, the judges and the specs myself.</p>
       <p class="where"><a href="#work">See the work</a><a href="https://github.com/newadays">GitHub</a><a href="https://www.linkedin.com/in/gbengawodokun/">LinkedIn</a><a href="https://medium.com/@gbenga-awodokun">Medium articles</a></p>
+      <ul class="logos" aria-label="Companies I have worked at">
+        <li><img src="logos/Roku_logo.svg.webp" alt="Roku" width="3840" height="1195"></li>
+        <li><img class="yt" src="logos/youtube-2-logo-png-transparent.png" alt="YouTube" width="2400" height="998"></li>
+        <li><img class="goog" src="logos/Google-Logo-1.png" alt="Google" width="3840" height="2159"></li>
+        <li><img class="ge" src="logos/General_Electric_logo.svg.webp" alt="GE" width="3840" height="3840"></li>
+      </ul>
     </div>
 
     <aside class="trace" aria-label="Career at a glance">
