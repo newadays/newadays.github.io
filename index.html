@@ -234,7 +234,7 @@ footer { padding-block: 26px 40px; border-top: 1px solid var(--line); color: var
     <div>
       <p class="label">AI product manager · Austin, Texas</p>
       <h1 style="margin-top:16px">I ship AI systems, then build the <em>evals</em> that tell me whether they work.</h1>
-      <p class="lede">Senior Product Manager at Roku for ML recommendations and experimentation. Before that, data platform at YouTube and sales engineering at Google Cloud. On my own time I build two clinical AI products, where I write the prompts, the judges and the specs myself.</p>
+      <p class="lede">Senior Product Manager at Roku for ML recommendations and experimentation. Before that, data platform at YouTube and sales engineering at Google Cloud. On my own time I build two AI products, where I write the prompts, the judges and the specs myself.</p>
       <p class="where"><a href="#work">See the work</a><a href="https://github.com/newadays">GitHub</a><a href="https://www.linkedin.com/in/gbengawodokun/">LinkedIn</a><a href="https://medium.com/@gbenga-awodokun">Medium articles</a></p>
     </div>
 
@@ -294,57 +294,6 @@ footer { padding-block: 26px 40px; border-top: 1px solid var(--line); color: var
       <div class="cases">
 
         <article class="case">
-          <div class="case-bar mono"><span>run · newcare/scribe</span><span>software builder · product + build</span></div>
-          <div class="case-body">
-            <div>
-              <h3>An AI scribe I could measure</h3>
-              <p class="role">NewCare is a clinical documentation and prescription-routing platform for Nigerian clinicians. The Scribe turns a recorded consult into a SOAP note.</p>
-              <p class="link"><a href="https://apps.apple.com/us/app/newcare-ai-for-clinicians/id6757157686">iOS app on the App Store</a></p>
-            </div>
-            <dl class="steps">
-              <div><dt>Problem</dt><dd>A scribe that invents a finding is worse than no scribe. Early prompt versions fabricated details, mishandled exams the doctor deferred, and missed transcription flags. Consults also switch between English and Yoruba, Igbo, Hausa or Pidgin mid-sentence.</dd></div>
-              <div><dt>What I built</dt><dd>Note generation on a self-hosted MedGemma 4B served through vLLM on a private Cloud Run service. I am moving it to a retrieval design that matches diagnoses against an ICD-10 index and pulls medications from a drug catalog, with specs written as a shared contract plus backend and mobile documents for coding agents to implement.</dd></div>
-              <div class="eval"><dt>Evaluation</dt><dd>An LLM-as-a-judge eval scores every note. I track scores per prompt version in Langfuse and iterate against each failure mode by name. A small group of physicians has used the mobile alpha on real consults since late August 2026 to build benchmarks.</dd></div>
-              <div><dt>Stack</dt><dd><ul class="chips"><li>MedGemma 4B</li><li>vLLM</li><li>Cloud Run</li><li>Firebase</li><li>Algolia</li><li>Langfuse</li><li>Expo / React Native</li><li>Maestro E2E</li></ul></dd></div>
-            </dl>
-          </div>
-        </article>
-
-        <article class="case">
-          <div class="case-bar mono"><span>run · heliodx/findings</span><span>solo founder · product + build</span></div>
-          <div class="case-body">
-            <div>
-              <h3>A team of agents reading chest X-rays</h3>
-              <p class="role">HelioDX drafts imaging findings for clinics that have no radiologist. The first use is tuberculosis screening. The clinician reviews every draft and makes the diagnosis.</p>
-              <p class="link"><a href="https://github.com/newadays/heliodx">Source on GitHub</a><a href="https://app.heliodx.com/">Live app</a><a href="https://evals.heliodx.com/">Eval results</a><a href="https://www.youtube.com/watch?v=gaQmFrep_O8">Demo video</a><a href="https://heliodx.com">heliodx.com</a></p>
-            </div>
-            <dl class="steps">
-              <div><dt>Problem</dt><dd>Many clinics in Nigeria take chest X-rays that no radiologist ever reads. A draft has to be useful to a general clinician and must never present itself as a diagnosis.</dd></div>
-              <div><dt>What I built</dt><dd>Meta Muse Wonder coordinates a team of Muse Glimmer agents that take a film from intake to a signed report. Meta SAM 3.1 segments every scan first, so each finding points at the region it rests on. Glimmer and SAM run on a private Cloud Run GPU through vLLM, so images and reports stay inside the project, and every agent step is recorded in an auditable trace. A guard in code, not only in the prompt, rejects any model answer that names a disease. Built solo for the Meta Global AI Developer Hackathon and <a href="https://github.com/newadays/heliodx">open source under AGPL-3.0</a>.</dd></div>
-              <div class="eval"><dt>Evaluation</dt><dd>160 code-graded tasks on public chest X-rays (NIH ChestX-ray14 and the Shenzhen TB screening set), run head to head against MedGemma 27B on the same GPU with the same masks. HelioDX was about twice as fast at about half the cost per task. Every task and score is <a href="https://evals.heliodx.com/">published</a>, including the weaknesses: neither system flagged a normal film, and both missed most TB-labelled films. It has not been validated in a clinic, and the product is positioned accordingly. The method is in the <a href="https://github.com/newadays/heliodx/blob/develop/eval/README.md">eval README</a>.</dd></div>
-              <div><dt>Stack</dt><dd><ul class="chips"><li>Muse Wonder</li><li>Muse Glimmer</li><li>Meta SAM 3.1</li><li>vLLM</li><li>Cloud Run GPU</li><li>Firebase</li><li>React + Vite</li><li>Human-in-the-loop review</li></ul></dd></div>
-            </dl>
-          </div>
-        </article>
-
-        <article class="case">
-          <div class="case-bar mono"><span>run · open-source/agents</span><span>author · public repos</span></div>
-          <div class="case-body">
-            <div>
-              <h3>Agents and evals, in the open</h3>
-              <p class="role">Two public repos: a LangGraph medical scribe built as a runnable tutorial, and a PM agent that mines apache/superset and audits its own report.</p>
-              <p class="link"><a href="https://github.com/newadays/scribe-health-ai-agent">scribe-health-ai-agent</a><a href="https://github.com/newadays/Apache-Superset-PM-Agent">Apache-Superset-PM-Agent</a><a href="https://medium.com/@gbenga-awodokun/building-clinical-ai-agents-with-langchain-and-jev-decision-healthcare-trustworthy-ai-lab-v2-1b81e271f1c9">Write-up on Medium</a></p>
-            </div>
-            <dl class="steps">
-              <div><dt>LangGraph scribe</dt><dd>A triage node routes each transcript to a pediatrics or general medicine agent, which writes a SOAP note with tools. A confidence gate sends doubtful input to human review instead of guessing. Both graphs are registered for LangGraph Studio and every run is traced in LangSmith.</dd></div>
-              <div><dt>Superset PM agent</dt><dd>Pulls releases, issues and discussions from apache/superset, scores them with a transparent heuristic, and has Claude write a prioritized PM report. Each run emits an OpenInference span tree.</dd></div>
-              <div class="eval"><dt>Evaluation</dt><dd>The scribe repo benchmarks LLM-as-a-judge triage against a decision model on six transcripts, five runs each. Routing accuracy tied at 87%, but the LLM reported 0.90 confidence on a case it got wrong, so its confidence could not drive the gate. The PM agent has a citation-faithfulness eval that exits non-zero on any fabricated issue reference, and a scoring eval that checks the heuristic against an LLM judge by rank correlation.</dd></div>
-              <div><dt>Stack</dt><dd><ul class="chips"><li>LangGraph</li><li>LangSmith</li><li>LangGraph Studio</li><li>OpenInference</li><li>Arize</li><li>Claude</li><li>Python</li></ul></dd></div>
-            </dl>
-          </div>
-        </article>
-
-        <article class="case">
           <div class="case-bar mono"><span>run · roku/experimentation</span><span>senior product manager</span></div>
           <div class="case-body">
             <div>
@@ -372,6 +321,57 @@ footer { padding-block: 26px 40px; border-top: 1px solid var(--line); color: var
               <div><dt>Google Cloud</dt><dd>Led a sales engineering team. I ran technical discovery, architecture reviews and proofs of concept with enterprise customers, and brought what they struggled with back to product teams.</dd></div>
               <div class="eval"><dt>Recognition</dt><dd>Stratosphere Award recipient at Google Cloud.</dd></div>
               <div><dt>Stack</dt><dd><ul class="chips"><li>BigQuery ML</li><li>Kubeflow</li><li>Data pipelines</li><li>Solution architecture</li></ul></dd></div>
+            </dl>
+          </div>
+        </article>
+
+        <article class="case">
+          <div class="case-bar mono"><span>run · open-source/agents</span><span>author · public repos</span></div>
+          <div class="case-body">
+            <div>
+              <h3>Agents and evals, in the open</h3>
+              <p class="role">Two public repos: a LangGraph medical scribe built as a runnable tutorial, and a PM agent that mines apache/superset and audits its own report.</p>
+              <p class="link"><a href="https://github.com/newadays/scribe-health-ai-agent">scribe-health-ai-agent</a><a href="https://github.com/newadays/Apache-Superset-PM-Agent">Apache-Superset-PM-Agent</a><a href="https://medium.com/@gbenga-awodokun/building-clinical-ai-agents-with-langchain-and-jev-decision-healthcare-trustworthy-ai-lab-v2-1b81e271f1c9">Write-up on Medium</a></p>
+            </div>
+            <dl class="steps">
+              <div><dt>LangGraph scribe</dt><dd>A triage node routes each transcript to a pediatrics or general medicine agent, which writes a SOAP note with tools. A confidence gate sends doubtful input to human review instead of guessing. Both graphs are registered for LangGraph Studio and every run is traced in LangSmith.</dd></div>
+              <div><dt>Superset PM agent</dt><dd>Pulls releases, issues and discussions from apache/superset, scores them with a transparent heuristic, and has Claude write a prioritized PM report. Each run emits an OpenInference span tree.</dd></div>
+              <div class="eval"><dt>Evaluation</dt><dd>The scribe repo benchmarks LLM-as-a-judge triage against a decision model on six transcripts, five runs each. Routing accuracy tied at 87%, but the LLM reported 0.90 confidence on a case it got wrong, so its confidence could not drive the gate. The PM agent has a citation-faithfulness eval that exits non-zero on any fabricated issue reference, and a scoring eval that checks the heuristic against an LLM judge by rank correlation.</dd></div>
+              <div><dt>Stack</dt><dd><ul class="chips"><li>LangGraph</li><li>LangSmith</li><li>LangGraph Studio</li><li>OpenInference</li><li>Arize</li><li>Claude</li><li>Python</li></ul></dd></div>
+            </dl>
+          </div>
+        </article>
+
+        <article class="case">
+          <div class="case-bar mono"><span>run · heliodx/findings</span><span>solo founder · product + build</span></div>
+          <div class="case-body">
+            <div>
+              <h3>A team of agents reading chest X-rays</h3>
+              <p class="role">HelioDX drafts imaging findings for clinics that have no radiologist. The first use is tuberculosis screening. The clinician reviews every draft and makes the diagnosis.</p>
+              <p class="link"><a href="https://github.com/newadays/heliodx">Source on GitHub</a><a href="https://app.heliodx.com/">Live app</a><a href="https://evals.heliodx.com/">Eval results</a><a href="https://www.youtube.com/watch?v=gaQmFrep_O8">Demo video</a><a href="https://heliodx.com">heliodx.com</a></p>
+            </div>
+            <dl class="steps">
+              <div><dt>Problem</dt><dd>Many clinics in Nigeria take chest X-rays that no radiologist ever reads. A draft has to be useful to a general clinician and must never present itself as a diagnosis.</dd></div>
+              <div><dt>What I built</dt><dd>Meta Muse Wonder coordinates a team of Muse Glimmer agents that take a film from intake to a signed report. Meta SAM 3.1 segments every scan first, so each finding points at the region it rests on. Glimmer and SAM run on a private Cloud Run GPU through vLLM, so images and reports stay inside the project, and every agent step is recorded in an auditable trace. A guard in code, not only in the prompt, rejects any model answer that names a disease. Built solo for the Meta Global AI Developer Hackathon and <a href="https://github.com/newadays/heliodx">open source under AGPL-3.0</a>.</dd></div>
+              <div class="eval"><dt>Evaluation</dt><dd>160 code-graded tasks on public chest X-rays (NIH ChestX-ray14 and the Shenzhen TB screening set), run head to head against MedGemma 27B on the same GPU with the same masks. HelioDX was about twice as fast at about half the cost per task. Every task and score is <a href="https://evals.heliodx.com/">published</a>, including the weaknesses: neither system flagged a normal film, and both missed most TB-labelled films. It has not been validated in a clinic, and the product is positioned accordingly. The method is in the <a href="https://github.com/newadays/heliodx/blob/develop/eval/README.md">eval README</a>.</dd></div>
+              <div><dt>Stack</dt><dd><ul class="chips"><li>Muse Wonder</li><li>Muse Glimmer</li><li>Meta SAM 3.1</li><li>vLLM</li><li>Cloud Run GPU</li><li>Firebase</li><li>React + Vite</li><li>Human-in-the-loop review</li></ul></dd></div>
+            </dl>
+          </div>
+        </article>
+
+        <article class="case">
+          <div class="case-bar mono"><span>run · newcare/scribe</span><span>software builder · product + build</span></div>
+          <div class="case-body">
+            <div>
+              <h3>An AI scribe I could measure</h3>
+              <p class="role">NewCare is a clinical documentation and prescription-routing platform for Nigerian clinicians. The Scribe turns a recorded consult into a SOAP note.</p>
+              <p class="link"><a href="https://apps.apple.com/us/app/newcare-ai-for-clinicians/id6757157686">iOS app on the App Store</a></p>
+            </div>
+            <dl class="steps">
+              <div><dt>Problem</dt><dd>A scribe that invents a finding is worse than no scribe. Early prompt versions fabricated details, mishandled exams the doctor deferred, and missed transcription flags. Consults also switch between English and Yoruba, Igbo, Hausa or Pidgin mid-sentence.</dd></div>
+              <div><dt>What I built</dt><dd>Note generation on a self-hosted MedGemma 4B served through vLLM on a private Cloud Run service. I am moving it to a retrieval design that matches diagnoses against an ICD-10 index and pulls medications from a drug catalog, with specs written as a shared contract plus backend and mobile documents for coding agents to implement.</dd></div>
+              <div class="eval"><dt>Evaluation</dt><dd>An LLM-as-a-judge eval scores every note. I track scores per prompt version in Langfuse and iterate against each failure mode by name. A small group of physicians has used the mobile alpha on real consults since late August 2026 to build benchmarks.</dd></div>
+              <div><dt>Stack</dt><dd><ul class="chips"><li>MedGemma 4B</li><li>vLLM</li><li>Cloud Run</li><li>Firebase</li><li>Algolia</li><li>Langfuse</li><li>Expo / React Native</li><li>Maestro E2E</li></ul></dd></div>
             </dl>
           </div>
         </article>
