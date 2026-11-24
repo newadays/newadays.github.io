@@ -249,7 +249,7 @@ footer { padding-block: 26px 40px; border-top: 1px solid var(--line); color: var
     <div>
       <p class="label">AI product manager · Austin, Texas</p>
       <h1 style="margin-top:16px">I ship AI systems, then build the <em>evals</em> that tell me whether they work.</h1>
-      <p class="lede">Senior Product Manager at Roku for ML recommendations and experimentation. Before that, data platform at YouTube and sales engineering at Google Cloud. On my own time I build two AI products, where I write the prompts, the judges and the specs myself.</p>
+      <p class="lede">Senior Product Manager at Roku for ML recommendations and experimentation. Before that, AI and data platform at YouTube and sales engineering at Google Cloud. On my own time I build two AI products, where I write the prompts, the judges and the specs myself.</p>
       <p class="where"><a href="#work">See the work</a><a href="https://github.com/newadays">GitHub</a><a href="https://www.linkedin.com/in/gbengawodokun/">LinkedIn</a><a href="https://medium.com/@gbenga-awodokun">Medium articles</a></p>
       <ul class="logos" aria-label="Companies I have worked at">
         <li><img src="logos/Roku_logo.svg.webp" alt="Roku" width="3840" height="1195"></li>
@@ -260,13 +260,14 @@ footer { padding-block: 26px 40px; border-top: 1px solid var(--line); color: var
     </div>
 
     <aside class="trace" aria-label="Career at a glance">
-      <div class="trace-head mono"><span>trace · career</span><span>6 spans</span></div>
+      <div class="trace-head mono"><span>trace · career</span><span>7 spans</span></div>
       <ol>
         <li><span class="tag">platform</span><span><span class="who">Roku</span><span class="what">Senior PM, ML Recommendations &amp; Experimentation</span></span></li>
         <li><span class="tag">platform</span><span><span class="who">YouTube</span><span class="what">PM, AI &amp; Data Platform</span></span></li>
         <li><span class="tag">field</span><span><span class="who">Google Cloud</span><span class="what">Sales Engineering Team Lead</span></span></li>
-        <li><span class="tag build">build</span><span><span class="who">NewCare</span><span class="what">Software Builder. AI scribe and prescription routing for Nigerian clinicians</span></span></li>
-        <li><span class="tag build">build</span><span><span class="who">HelioDX</span><span class="what">Solo founder. Agent-drafted imaging findings, reviewed by clinicians</span></span></li>
+        <li><span class="tag build">founder</span><span><span class="who">Cashaam</span><span class="what">E-commerce and AI digital marketing platform</span></span></li>
+        <li><span class="tag build">build</span><span><span class="who">NewCare</span><span class="what">AI scribe and prescription routing for clinicians</span></span></li>
+        <li><span class="tag build">build</span><span><span class="who">HelioDX</span><span class="what">Agent-drafted imaging findings, reviewed by clinicians</span></span></li>
         <li><span class="tag build">oss</span><span><span class="who">Open source</span><span class="what">A LangGraph scribe agent and a PM agent with its own evals</span></span></li>
       </ol>
     </aside>
@@ -276,7 +277,7 @@ footer { padding-block: 26px 40px; border-top: 1px solid var(--line); color: var
     <div class="wrap">
       <div class="sec-head">
         <p class="label">Selected work</p>
-        <h2>Five runs, traced end to end</h2>
+        <h2>Six runs, traced end to end</h2>
         <p>Each one lists the problem, what I did, and how the result was evaluated.</p>
       </div>
 
@@ -300,11 +301,28 @@ footer { padding-block: 26px 40px; border-top: 1px solid var(--line); color: var
         </article>
 
         <article class="case">
+          <div class="case-bar mono"><span>run · roku/personalization</span><span>senior product manager</span></div>
+          <div class="case-body">
+            <div>
+              <h3>New candidate generators for personalization</h3>
+              <p class="role">Product lead for retrieval in Roku's recommendations stack: reinforcement learning, generative retrieval and a new optimization objective.</p>
+            </div>
+            <dl class="steps">
+              <div><dt>Reinforcement learning</dt><dd>Led zero-to-one RL models, framed as a partially observed Markov decision process, as new candidate generators. They use third-party search data to improve discovery and semantic understanding. I worked with ML and data engineers on model architecture, data collection, offline training, online validation and A/B tests, and identified the calibration problem that had to be solved before the RL model could serve as an extra retrieval route.</dd></div>
+              <div><dt>Generative retrieval</dt><dd>Set retrieval's strategy to move candidate generation from pointwise to generative prediction. With ML engineers, validated that residual quantization can produce semantic IDs for candidate generation within compute and QPS limits.</dd></div>
+              <div><dt>Optimization objective</dt><dd>Landed a P(select) objective built on knowledge distillation to raise recall, working through debiasing, training-serving inconsistency, and label and feature engineering with lead engineers.</dd></div>
+              <div class="eval"><dt>Evaluation</dt><dd>The RL models were judged on TD error and Q-value distributions offline and lifted soft recall by more than 8%. Semantic IDs improved offline normalized entropy loss by 3.2%. The P(select) objective lifted recall by 6% and ad score by 0.4%.</dd></div>
+              <div><dt>Stack</dt><dd><ul class="chips"><li>Candidate generation</li><li>Reinforcement learning</li><li>POMDP</li><li>Semantic IDs</li><li>Residual quantization</li><li>Knowledge distillation</li></ul></dd></div>
+            </dl>
+          </div>
+        </article>
+
+        <article class="case">
           <div class="case-bar mono"><span>run · google/data-platform</span><span>product manager · team lead</span></div>
           <div class="case-body">
             <div>
               <h3>Data infrastructure, then the customers who buy it</h3>
-              <p class="role">PM on YouTube's Data Platform, then Sales Engineering Team Lead at Google Cloud.</p>
+              <p class="role">PM on YouTube's AI &amp; Data Platform, then Sales Engineering Team Lead at Google Cloud.</p>
               <p class="link"><a href="https://medium.com/@gbenga-awodokun/targeting-high-value-customers-with-bqml-and-functions-in-20-minutes-aa53b3133efa">My BigQuery ML tutorial on Medium</a></p>
             </div>
             <dl class="steps">
@@ -334,7 +352,7 @@ footer { padding-block: 26px 40px; border-top: 1px solid var(--line); color: var
         </article>
 
         <article class="case">
-          <div class="case-bar mono"><span>run · heliodx/findings</span><span>solo founder · product + build</span></div>
+          <div class="case-bar mono"><span>run · heliodx/findings</span><span>product + build</span></div>
           <div class="case-body">
             <div>
               <h3>A team of agents reading chest X-rays</h3>
@@ -351,11 +369,11 @@ footer { padding-block: 26px 40px; border-top: 1px solid var(--line); color: var
         </article>
 
         <article class="case">
-          <div class="case-bar mono"><span>run · newcare/scribe</span><span>software builder · product + build</span></div>
+          <div class="case-bar mono"><span>run · newcare/scribe</span><span>product + build</span></div>
           <div class="case-body">
             <div>
               <h3>An AI scribe I could measure</h3>
-              <p class="role">NewCare is a clinical documentation and prescription-routing platform for Nigerian clinicians. The Scribe turns a recorded consult into a SOAP note.</p>
+              <p class="role">NewCare is a clinical documentation and prescription-routing platform for clinicians. The Scribe turns a recorded consult into a SOAP note.</p>
               <p class="link"><a href="https://apps.apple.com/us/app/newcare-ai-for-clinicians/id6757157686">iOS app on the App Store</a></p>
             </div>
             <dl class="steps">
@@ -379,6 +397,10 @@ footer { padding-block: 26px 40px; border-top: 1px solid var(--line); color: var
         <p>I have built AI products from scratch and run the platforms other teams build on. These habits carry across both.</p>
       </div>
       <div class="fit">
+        <div class="fit-row">
+          <h3>Personalization and recommendations</h3>
+          <p>At Roku I lead product for candidate generation: reinforcement learning retrievers, the move to generative retrieval with semantic IDs, and a distillation-based P(select) objective. I define the modeling capabilities with ML engineers and take models from offline training through online validation and A/B tests.</p>
+        </div>
         <div class="fit-row">
           <h3>Evaluation systems that scale</h3>
           <p>I built an LLM-as-a-judge eval for a clinical scribe and iterated the prompt through versions against named failure modes: fabricated findings, deferred exams, transcription flags. HelioDX publishes every eval task and score at <a href="https://evals.heliodx.com/">evals.heliodx.com</a>, and my <a href="https://github.com/newadays/Apache-Superset-PM-Agent">Superset PM agent</a> ships with a citation-faithfulness eval that can gate CI. At Roku I work on experimentation and LLM evals for a recommendations platform.</p>
@@ -416,6 +438,7 @@ footer { padding-block: 26px 40px; border-top: 1px solid var(--line); color: var
             <li>LangSmith, Langfuse, MLflow</li>
             <li>vLLM, SGLang, MCP</li>
             <li>Kubeflow, BigQuery ML</li>
+            <li>Personalization and recommender systems</li>
             <li>Experimentation and causal inference</li>
             <li>Google Cloud, Firebase, Cloud Run</li>
           </ul>
@@ -433,7 +456,7 @@ footer { padding-block: 26px 40px; border-top: 1px solid var(--line); color: var
         <div>
           <h3>Earlier</h3>
           <ul>
-            <li>Founder, Cashaam / CreateKap (Techstars-backed)</li>
+            <li>Founder, Cashaam / CreateKap (Techstars-backed), an e-commerce and AI digital marketing platform</li>
             <li>Software engineer at GE and SLB</li>
             <li>Open source: <a href="https://github.com/newadays/Apache-Superset-PM-Agent">a PM agent for Apache Superset</a></li>
             <li>Writing: <a href="https://medium.com/@gbenga-awodokun">medium.com/@gbenga-awodokun</a></li>
